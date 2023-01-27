@@ -1,10 +1,11 @@
 #!/bin/bash
 
-echo "give me a bottle of rum!"
-
-
-echo "test run"
-
+echo "
+███████████████████████████████████
+█─▄▄▄─█─▄▄─█▄─█─▄█─▄▄─█─▄─▄─█▄─▄▄─█
+█─███▀█─██─██▄─▄██─██─███─████─▄█▀█
+▀▄▄▄▄▄▀▄▄▄▄▀▀▄▄▄▀▀▄▄▄▄▀▀▄▄▄▀▀▄▄▄▄▄▀
+"
 
 if [[ $# -eq 0 ]]
 then
@@ -18,16 +19,20 @@ else
 if [ $2 == S ]
 then
     echo "INTIATING STEALTH SCAN, SNEAKY BOI"
-    sudo nmap -sS -Pn --disable-arp-ping -vv -n -oN data $1
+    sudo nmap -sS -Pn --disable-arp-ping -vv -n -oN data -D RND:5 $1
+elif [ $2 == Si ]
+then
+    echo "INTIATING STEALTH SCAN, SNEAKY BOI + more info"
+    sudo nmap -sS -Pn --disable-arp-ping -vv -n --packet-trace -oN data -D RND:5 $1
 elif [ $2 == A ]
 then
     echo "INTIATING AGGRESSIVE SCAN, LIVE FAST DIE HARD"
-    sudo nmap -A -vv -oN data $1
+    sudo nmap -A -vv -oN data -D RND:5 $1
 
 elif [ $2 == SV ]
 then
     echo "INTIATING STEALTH 'N VERSION SCAN, YE"
-    sudo nmap -sS -sV -Pn --disable-arp-ping -vv -n -oN data $1 
+    sudo nmap -sS -sV -Pn --disable-arp-ping -vv -n -oN data -D RND:5 $1 
 else 
     echo "Ugh, no input? Or Error maybe"
 fi
